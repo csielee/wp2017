@@ -1,0 +1,188 @@
+body {
+  background-image: url(bg.png);
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+table {
+  text-align:left;
+}
+
+.flex-container {
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+  flex-wrap:wrap;
+  position: fixed;
+  top : 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.divbutton {
+  background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  margin: 0; padding: 0;
+  display: inline-block;
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+}
+
+.divbutton a {
+  text-decoration: none;
+
+}
+
+.divbutton h3 {
+  color: black
+}
+
+.divbutton:hover {
+  border-color: white;
+}
+.divbutton:hover .buttonTitle h3{
+  color: mediumblue;
+}
+
+.divbutton:focus {
+  animation: clickButton 2s;
+  animation-fill-mode: forwards;
+  -webkit-animation: clickButton 2s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation: clickButton 2s;
+  -o-animation: clickButton 2s;
+  -o-animation-fill-mode: forwards;
+  order : 99;
+}
+
+.divbutton:focus .buttonContent {
+  display: block;
+}
+
+.divbutton:focus .buttonTitle {
+  display: none;
+}
+
+.buttonContent {
+  display: none;
+  background-color: white;
+  text-align: center;
+  overflow: auto;
+  height: auto;
+}
+
+.buttonTitle {
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes clickButton{
+  0%  {width: 0; height: 0;}
+  100% {width: 100%; height: 100%;}
+}
+
+@-webkit-keyframes clickButton{
+  0%  {width: 0; height: 0;}
+  100% {width: 100%; height: 100%;}
+}
+
+@-moz-keyframes clickButton{
+  0%  {width: 0; height: 0;}
+  100% {width: 100%; height: 100%;}
+}
+
+@-o-keyframes clickButton{
+  0%  {width: 0; height: 0;}
+  100% {width: 100%; height: 100%;}
+}
+
+/* handle image show */
+
+.middle_img {
+  width: 100%;
+  height: 160px;
+  text-align: center;
+  margin:0px auto;
+  display: flex;
+  justify-content:space-around;
+  align-items:flex-start;
+}
+
+
+.middle_img div{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-style: none;
+
+  width: 30%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  text-align: center;
+  
+  -webkit-animation: change_img 12s linear infinite;
+  animation: change_img 12s linear infinite;
+}
+
+.middle_img div img {
+  height: 100%;
+  width: auto;
+}
+
+.middle_img:hover div {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+@-webkit-keyframes change_img {
+  5% {
+    opacity: 1;
+    /* 0 - 1秒 淡入*/
+  }
+  20% {
+    opacity: 1;
+    /* 1- 4秒靜止*/
+  }
+  25% {
+    opacity: 0;
+    /* 4-5秒淡出*/
+  }
+}
+@keyframes change_img {
+  5% {
+    opacity: 1;
+    /* 0 - 1秒 淡入*/
+  }
+  20% {
+    opacity: 1;
+    /* 1- 4秒靜止*/
+  }
+  25% {
+    opacity: 0;
+    /* 4-5秒淡出*/
+  }
+}
+
+.middle_img div:nth-child(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.middle_img div:nth-child(2) {
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s;
+}
+
+.middle_img div:nth-child(3) {
+  -webkit-animation-delay: 8s;
+  animation-delay: 8s;
+}
