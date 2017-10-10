@@ -75,13 +75,40 @@ $(document).ready(function(){
 	});
 	//setUIb("body",2,function() {console.log("b finish !");});
 
-	$(".divbutton").on("focus", function() {
+	var prevButton,atHome = true;
+	var backToHome = function(e) {
+		if (!atHome && $(prevButton)) {
+			prevButton = $(prevButton);
+			if(!prevButton.is(e.target) && prevButton.has(e.target).length === 0) {
+				prevButton.removeClass("divbuttonAnimation");
+				prevButton = null;
+				setUIa(".divbutton",2,null);
+				atHome = true;
+			}
+		}
+		return false;
+	};
+
+	$(".divbutton").on("click", function() {
+		if (prevButton) {
+			var _p = $(prevButton);
+			if(_p.is(this) || _p.has(this).length!=0)
+				return false;
+		}
+
 		var button = this;
 		setUIb("body",2,function() {
+			if ($(prevButton))
+				$(prevButton).removeClass("divbuttonAnimation");
+
 			$(button).addClass("divbuttonAnimation");
+			prevButton = button;
+
+			atHome = false;
 		});
+
+		return false;
 	});
-	$(".divbutton").on("blur", function() {
-		$(this).removeClass("divbuttonAnimation");
-	})
+
+	$("body").on("click", backToHome);
 });

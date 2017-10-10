@@ -76,7 +76,7 @@ table {
   background-color: white;
   text-align: center;
   overflow: auto;
-  height: auto;
+  height: 100%;
 }
 
 @keyframes clickButton{
