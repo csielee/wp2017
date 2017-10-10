@@ -59,6 +59,7 @@ table {
   -moz-animation: clickButton 2s;
   -o-animation: clickButton 2s;
   -o-animation-fill-mode: forwards;
+  overflow: auto;
   order : 99;
 }
 
