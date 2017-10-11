@@ -76,18 +76,7 @@ $(document).ready(function(){
 	//setUIb("body",2,function() {console.log("b finish !");});
 
 	var prevButton,atHome = true;
-	var backToHome = function(e) {
-		if (!atHome && $(prevButton)) {
-			prevButton = $(prevButton);
-			if(!prevButton.is(e.target) && prevButton.has(e.target).length === 0) {
-				prevButton.removeClass("divbuttonAnimation");
-				prevButton = null;
-				setUIa(".divbutton",2,null);
-				atHome = true;
-			}
-		}
-		return false;
-	};
+	
 
 	$(".divbutton").on("click", function() {
 		if (prevButton) {
@@ -110,5 +99,16 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$("body").on("click", backToHome);
+	$("body").on("click",  (e) => {
+		if (!atHome && $(prevButton)) {
+			prevButton = $(prevButton);
+			if(!prevButton.is(e.target) && prevButton.has(e.target).length === 0) {
+				prevButton.removeClass("divbuttonAnimation");
+				prevButton = null;
+				setUIa(".divbutton",2,null);
+				atHome = true;
+			}
+		}
+		return false;
+	});
 });
