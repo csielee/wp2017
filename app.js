@@ -115,6 +115,10 @@ $(document).ready(function(){
 	$(".ajaxform").children("button[type=submit]").click(() => {
 		console.log("click!");
 		$.ajax({
+			method : "POST",
+			data : {
+				guessnumber : $("input[name=quessnumber]").val()
+			},
 			url : 'https://luffy.ee.ncku.edu.tw/~csielee/ajax.php',
 			success : (data) => {
 				$(".ajaxform").children("p").text(data);
