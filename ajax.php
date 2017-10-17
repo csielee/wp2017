@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/text; charset=UTF-8');
+header('Content-Type: application/html; charset=UTF-8');
 
 echo "test ajax";
 ?>

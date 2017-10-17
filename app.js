@@ -115,7 +115,7 @@ $(document).ready(function(){
 	$(".ajaxform").children("button[type=submit]").click(() => {
 		console.log("click!");
 		$.ajax({
-			url : 'http://luffy.ee.ncku.edu.tw/~csielee/ajax.php',
+			url : 'https://luffy.ee.ncku.edu.tw/~csielee/ajax.php',
 			success : (data) => {
 				$(".ajaxform").children("p").text(data);
 			},
