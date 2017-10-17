@@ -112,18 +112,41 @@ $(document).ready(function(){
 		return false;
 	});
 
+  var answernumber = parseInt(Math.random()*100);
+  var a = 1,b = 100;
+  $(".ajaxform").children("div").first().text("歡迎來玩猜數字,請輸入" + a + "與" + b + "之間的數字");
+
 	$(".ajaxform").children("button[type=submit]").click(() => {
 		console.log("click!");
+    var guess = $("input[name=guessnumber]").val();
+    if (!(a <= guess && guess <= b)) {
+      $(".ajaxform").children("p").text("請輸入在" + a + "與" + b + "之間的數字");
+      return;
+    }
+
 		$.ajax({
 			method : "POST",
 			data : {
-				guessnumber : $("input[name=quessnumber]").val()
+				guessnumber : guess,
+        answer : answernumber,
 			},
 			url : 'https://luffy.ee.ncku.edu.tw/~csielee/ajax.php',
 			success : (data) => {
-				$(".ajaxform").children("p").text(data);
+        console.log(data);
+        if (data.status == "correct") {
+          answernumber = parseInt(Math.random()*100);
+          a = 1;
+          b = 100;
+        }
+        if (data.status == "big")
+          b = guess;
+        if (data.status == "small")
+          a = guess;
+
+				$(".ajaxform").children("p").text(data.text);
+        $(".ajaxform").children("div").first().text("歡迎來玩猜數字,請輸入" + a + "與" + b + "之間的數字");
 			},
 		});
-		$(".ajaxform").children("p").text("loading");
+		$(".ajaxform").children("p").text("waiting");
 	});
 });
