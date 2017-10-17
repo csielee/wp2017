@@ -111,4 +111,15 @@ $(document).ready(function(){
 		}
 		return false;
 	});
+
+	$(".ajaxform").children("button[type=submit]").click(() => {
+		console.log("click!");
+		$.ajax({
+			url : 'http://luffy.ee.ncku.edu.tw/~csielee/ajax.php',
+			success : (data) => {
+				$(".ajaxform").children("p").text(data);
+			},
+		});
+		$(".ajaxform").children("p").text("loading");
+	});
 });
