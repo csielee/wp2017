@@ -114,13 +114,13 @@ $(document).ready(function(){
 
   var answernumber = parseInt(Math.random()*100);
   var a = 1,b = 100;
-  $(".ajaxform").children("div").first().text("歡迎來玩猜數字,請輸入" + a + "與" + b + "之間的數字");
+  $("#hitmessage").first().text("請輸入" + a + "與" + b + "之間的數字");
 
 	$(".ajaxform").children("button[type=submit]").click(() => {
 		console.log("click!");
-    var guess = $("input[name=guessnumber]").val();
-    if (!(a <= guess && guess <= b)) {
-      $(".ajaxform").children("p").text("請輸入在" + a + "與" + b + "之間的數字");
+    var guess = parseInt($("input[name=guessnumber]").val());
+    if (isNaN(guess) || !(a <= guess && guess <= b)) {
+      $("#answermessage").text(guess + "不是" + a + "與" + b + "之間的數字唷");
       return;
     }
 
@@ -139,14 +139,14 @@ $(document).ready(function(){
           b = 100;
         }
         if (data.status == "big")
-          b = guess;
+          b = guess - 1;
         if (data.status == "small")
-          a = guess;
+          a = guess + 1;
 
-				$(".ajaxform").children("p").text(data.text);
-        $(".ajaxform").children("div").first().text("歡迎來玩猜數字,請輸入" + a + "與" + b + "之間的數字");
+				$("#answermessage").text(data.text);
+        $("#hitmessage").text("請輸入" + a + "與" + b + "之間的數字");
 			},
 		});
-		$(".ajaxform").children("p").text("waiting");
+		$("#answermessage").html('<button class="ui loading button">Loading</button>');
 	});
 });
